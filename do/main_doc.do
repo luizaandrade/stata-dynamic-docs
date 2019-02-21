@@ -1,4 +1,4 @@
-texdoc init "${raw}/main_doc.tex", replace hardcode nokeep
+texdoc init "${output}/main_doc.tex", replace hardcode nokeep
 
 /***
 \documentclass[a4paper]{article}

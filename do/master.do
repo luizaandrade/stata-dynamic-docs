@@ -4,14 +4,15 @@
 	ssc install texify
 
 	* Set folder paths
-	global 	project_folder 	"FOLDER/PATH/HERE"
-	global	raw				"${project_folder}/Raw"
+	global 	project_folder 	"C:\Users\wb501238\Documents\GitHub\stata-dynamic-docs"
+	global	do				"${project_folder}/do"
+	global	output			"${project_folder}/output"
 
 	* Change current directory to the directory where the .tex file will be saved
-	cd 	"${raw}"
+	cd 	"${out_raw}"
 	
 	* Copy the style to the folder path
 	copy 	https://www.stata-journal.com/production/sjlatex/stata.sty 	stata.sty
 
-	tex doc do		"${project_folder}/main_doc.do", replace
-	texify 			"${raw}/main_doc.tex"	
+	texdoc do		"${do}/main_doc.do", replace
+	texify 			"${output}/main_doc.tex"	
