@@ -1,18 +1,55 @@
+/*******************************************************************************
+*							  DIME Analytics								   *
+*   					  DYNAMIC DOCUMENTS IN STATA						   *
+*   							   2019										   *
+********************************************************************************
+
+	** OUTLINE:		PART 1:  INSTALL NECESSARY PACKAGES  	
+					PART 2:  SET DIRECTORIES	
+					PART 3:  COPY stata.sty		
+					PART 4:  CREATE DOCUMENT			
+				  
+	** WRITEN BY:   Luiza Andrade (lcardoso@worldbank.org)
+
+
+********************************************************************************
+					   INSTALL NECESSARY PACKAGES  							   
+********************************************************************************/
 	
 	* Install necessary packages
-	ssc install texdoc
-	ssc install texify
+	ssc install texdoc				// Write a .tex document from Stata
+	ssc install texify				// Compile the document into PDF
+
+/*******************************************************************************
+							SET DIRECTORIES					   
+********************************************************************************/
 
 	* Set folder paths
-	global 	project_folder 	"C:\Users\wb501238\Documents\GitHub\stata-dynamic-docs"
+	global 	project_folder 	"GITHUB/FOLDER/HERE"
 	global	do				"${project_folder}/do"
 	global	output			"${project_folder}/output"
 
+/*******************************************************************************
+							COPY stata.sty				   
+********************************************************************************
+	This is a tex style to format stata code. It can be donwloaded as below 
+	and needs to be saved in the same folder as your .tex file. You can also
+	copy it to wherever your tex styles are saved and then you only need to 
+	do it once. If you can figure out where that is.
+	
+	This file is already on the GitHub folder (as the code below may break),
+	but this is how we got it originally.	
+------------------------------------------------------------------------------*/
+
 	* Change current directory to the directory where the .tex file will be saved
-	cd 	"${out_raw}"
+	cd 	"${output}"
 	
 	* Copy the style to the folder path
 	copy 	https://www.stata-journal.com/production/sjlatex/stata.sty 	stata.sty
 
-	texdoc do		"${do}/main_doc.do", replace
-	texify 			"${output}/main_doc.tex"	
+/*******************************************************************************
+							CREATE DOCUMENT			   
+*******************************************************************************/
+
+	texdoc do		"${do}/main_doc.do", replace	// Creates a .tex document
+	texify 			"${output}/main_doc.tex"		// Turns it into a PDF document
