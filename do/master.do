@@ -40,16 +40,20 @@
 	This file is already on the GitHub folder (as the code below may break),
 	but this is how we got it originally.	
 ------------------------------------------------------------------------------*/
+------------------------------------------------------------------------------*
 
 	* Change current directory to the directory where the .tex file will be saved
 	cd 	"${output}"
 	
 	* Copy the style to the folder path
-	copy 	https://www.stata-journal.com/production/sjlatex/stata.sty 	stata.sty
+	copy 	"https://www.stata-journal.com/production/sjlatex/stata.sty"	"stata.sty"
 
-/*******************************************************************************
+*******************************************************************************
 							CREATE DOCUMENT			   
 *******************************************************************************/
 
-	texdoc do		"${do}/main_doc.do", replace	// Creates a .tex document
-	texify 			"${output}/main_doc.tex"		// Turns it into a PDF document
+	* Write a .tex file
+	texdoc do		"${do}/main_doc.do", replace
+	
+	* Compile the .tex file into PDF on Windows
+	texify 			"${output}/main_doc.tex"
